@@ -20,7 +20,6 @@ E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\bin\Debug\netcoreapp2.1\SocketDem
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\bin\Debug\netcoreapp2.1\SocketDemo.pdb
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\bin\Debug\netcoreapp2.1\Mm.Tools.Coroutine.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\bin\Debug\netcoreapp2.1\Mm.Tools.Coroutine.pdb
-E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.csprojAssemblyReference.cache
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.AssemblyInfoInputs.cache
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.AssemblyInfo.cs
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.csproj.CoreCompileInputs.cache
@@ -28,3 +27,5 @@ E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDem
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.pdb
 E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.genruntimeconfig.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.csproj.AssemblyReference.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\SocketDemo\obj\Debug\netcoreapp2.1\SocketDemo.GeneratedMSBuildEditorConfig.editorconfig

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5AON1xjWC9KLN0FTWIfEEOVJDNg+zKxtOWCrU4FY3xAdAqb3XH/rD6VFsXuzTvKtYSRrpoBJ1yE35wwPiy+5NA==",
+  "dgSpecHash": "lBx8ccbq6jM2q4Hlsj8oP4184oH3pIejVmgXPqT2U3diN2kV7fMU2NOMz56tRMO0FzF4J9xU0Q9CBN3SptUblA==",
   "success": true,
   "projectFilePath": "E:\\Work\\CodeLabs\\Mm.Tools.Coroutine\\SocketDemo\\SocketDemo.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,8 @@
     "C:\\Users\\Denebola\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
     "C:\\Users\\Denebola\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
     "C:\\Users\\Denebola\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Denebola\\.nuget\\packages\\mm.tools.coroutine\\1.1.0\\mm.tools.coroutine.1.1.0.nupkg.sha512"
   ],
   "logs": []
 }

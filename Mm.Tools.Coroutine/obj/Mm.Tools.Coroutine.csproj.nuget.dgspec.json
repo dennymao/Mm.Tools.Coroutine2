@@ -5,7 +5,7 @@
   },
   "projects": {
     "E:\\Work\\CodeLabs\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine.csproj": {
-      "version": "1.1.0",
+      "version": "1.1.1",
       "restore": {
         "projectUniqueName": "E:\\Work\\CodeLabs\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine.csproj",
         "projectName": "Mm.Tools.Coroutine",
@@ -27,7 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "E:\\Denebola\\Desktop\\111": {},
+          "F:\\work\\CodeLibs\\Libs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

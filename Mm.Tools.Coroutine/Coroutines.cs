@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Pipes;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +31,7 @@ namespace Mm.Tools.Coroutine
         Canceled,
     }
     public class Coroutines
-    {
+    { 
 
         private bool _isRuning = false; 
         private object mutexObj = new object();
@@ -94,6 +96,49 @@ namespace Mm.Tools.Coroutine
             SetCoroutineItem(citem);
             return v;
         }
+        /// <summary>
+        /// 内置类型，仅为了CTask<T> RunCoroutineItemAsync<T1,T>(Func<T1,T> func, T1 args = default, Action<Exception> exAct =null)
+        /// 方法使用。
+        /// </summary>
+        /// <typeparam name="T1">输入类型</typeparam>
+        /// <typeparam name="T">返回类型</typeparam>
+        private class ciaCallParmas<T1,T>
+        {
+            internal Func<T1, T> func;
+            internal T1 args; 
+        }
+        /// <summary>
+        /// 单次将非异步程序强行封装异步处理
+        /// 这可能会导致线程被持续占用的情况，请注意！
+        /// </summary>
+        /// <typeparam name="T1">输入参数类型</typeparam>
+        /// <typeparam name="T">返回参数类型</typeparam>
+        /// <param name="func">函数</param>
+        /// <param name="args"></param>
+        /// <param name="exAct"></param>
+        /// <returns></returns>
+        public CTask<T> RunCoroutineItemAsync<T1,T>(Func<T1,T> func, T1 args = default, Action<Exception> exAct =null)
+        { 
+            var citem = new CoroutineItem(this, (ci, _a)=>{
+                ciaCallParmas<T1, T> arg = _a as ciaCallParmas<T1, T>;
+                ci.result = arg.func(arg.args);
+                return default;
+            }, new ciaCallParmas<T1,T>() { func = func, args = args });
+            //Err Hook
+            if (exAct != null)
+            {
+                citem.ExceptionOperator = exAct;
+            } 
+            var v = new CTask<T>(citem);
+            SetCoroutineItem(citem);
+            return v;
+        }
+        //private IEnumerator<CoroutineControl> defInvork(CoroutineItem ci,object args)
+        //{
+        //   // ciaCallParmas<T1, T> arg = args as ciaCallParmas<T1, T>;
+        //    //ci.result = arg.func(arg.args); 
+        //    //yield return CoroutineControl.end;
+        //}
 
         private void SetCoroutineItems(IEnumerable<CoroutineItem> citems)
         {

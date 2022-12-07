@@ -20,7 +20,6 @@ E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\bin\Debug\netcoreapp2.1\ClientDem
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\bin\Debug\netcoreapp2.1\ClientDemo.pdb
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\bin\Debug\netcoreapp2.1\Mm.Tools.Coroutine.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\bin\Debug\netcoreapp2.1\Mm.Tools.Coroutine.pdb
-E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.csprojAssemblyReference.cache
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.AssemblyInfoInputs.cache
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.AssemblyInfo.cs
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.csproj.CoreCompileInputs.cache
@@ -28,3 +27,5 @@ E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDem
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.pdb
 E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.genruntimeconfig.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.csproj.AssemblyReference.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\ClientDemo\obj\Debug\netcoreapp2.1\ClientDemo.GeneratedMSBuildEditorConfig.editorconfig

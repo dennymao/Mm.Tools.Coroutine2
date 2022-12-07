@@ -17,8 +17,11 @@ namespace Mm.Tools.Coroutine
         private System.Diagnostics.Stopwatch _sleepWatch;
         private int sleepTime = 0;
         private IEnumerator<CoroutineControl> _actBuf;
-        public int RestartCount = 0;
-        public int RestartInterval = 1000;
+        [Obsolete]
+        public int RestartCount = 0; //默认重试，该功能谨慎使用，默认不该由框架处理异常重试。
+        [Obsolete]
+        public int RestartInterval = 1000;//同上
+
         public Action<Exception> ExceptionOperator;
         public Action AsyncCallBackAction; 
         public object result = null; //协程结果返回，此处主要用于Async await
@@ -99,13 +102,26 @@ namespace Mm.Tools.Coroutine
             {
                 try
                 {
-                    mnextb = _actBuf.MoveNext();
-                    if (_actBuf.Current == CoroutineControl.sched)
+                    //add function 
+                    //此处增加了_actBuf为null的处理
+                    //当_actBuf为空的时候，相当于没有用yeid返回，直接赋结束标记  CoroutineStatus.end;
+                    if (_actBuf is null)
                     {
-                        
-                        result = CoroutineControl.sched;
-                        break;
+                        _Status = CoroutineStatus.end;
+                    } 
+                    else
+                    {
+
+                        mnextb = _actBuf.MoveNext();
+                        if (_actBuf.Current == CoroutineControl.sched)
+                        {
+
+                            result = CoroutineControl.sched;
+                            break;
+                        }
                     }
+
+                    
                     if (!mnextb) _Status = CoroutineStatus.end;
                 }
                 catch (Exception ex)

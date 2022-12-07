@@ -27,7 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "E:\\Denebola\\Desktop\\111": {},
+          "F:\\work\\CodeLibs\\Libs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -91,7 +91,7 @@
         ],
         "sources": {
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "E:\\Denebola\\Desktop\\111": {},
+          "F:\\work\\CodeLibs\\Libs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
