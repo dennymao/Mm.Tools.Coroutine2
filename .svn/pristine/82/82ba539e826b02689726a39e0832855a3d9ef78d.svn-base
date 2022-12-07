@@ -1,0 +1,239 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+
+namespace Mm.Tools.Coroutine
+{
+    public class AsyncArgs<T>
+    {
+        public T Result;
+        public object args;
+        public AsyncArgs(T result, object args)
+        {
+            this.Result = result;
+            this.args = args;
+        }   
+    }
+    public enum CoroutinesStatus
+    {
+        UnStart,
+        Runing,
+        Keeping,
+        Aborting,
+        Aborted
+    }
+    public class Coroutines
+    {
+
+        private bool _isRuning = false;
+        private object mutexObj = new object();
+
+        public Action<Exception> ExceptionOperator;
+        /// <summary>
+        /// 错误重试数，如果不重新启动子进程，设为0
+        /// 错误重试将重新开始子委托，而不是从错误处继续
+        /// </summary>
+        public int BreakReStartCount = 3;
+        /// <summary>
+        /// ms单位
+        /// </summary>
+        public int BreakReStartInterval = 1000;
+        public bool IsRuning { get => _isRuning;}
+        public CoroutinesStatus Status { get => _runStatus; }
+
+        /// <summary>
+        /// 协程间交换对象。
+        /// </summary>
+        public object target = null;
+
+        //设置协程方法组
+        private List<CoroutineItem> _LCIs = new List<CoroutineItem>();
+        private List<CoroutineItem> _LCIs2 = new List<CoroutineItem>();
+
+        public int CoroutinesCount
+        {
+            get
+            {
+                return _LCIs.Count;
+            }
+        }
+        public int CoroutinesCount2
+        {
+            get
+            {
+                return _LCIs2.Count;
+            }
+        }
+
+        //设置表明该对象是否持续运行。
+        private CoroutinesStatus _runStatus = CoroutinesStatus.UnStart;
+
+
+        //System.Collections.Concurrent.ConcurrentQueue<CoroutineItem> _LCIs = new System.Collections.Concurrent.ConcurrentQueue<CoroutineItem>();
+        /// <summary>
+        /// 异步获取，返回await由协程调用线程池触发
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="func"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public CTask<T> RunCoroutineItemAsync<T>(Func<CoroutineItem,object, IEnumerator<CoroutineControl>> func, object args = null)
+        { 
+            var citem = new CoroutineItem(this, func, args);
+            var v = new CTask<T>(citem);
+            SetCoroutineItem(citem);
+            return v;
+        }
+
+        private void SetCoroutineItem(CoroutineItem citem)
+        {
+            if (IsRuning)
+            {
+                lock (_LCIs2)
+                {
+                    _LCIs2.Add(citem);
+
+                }
+            }
+            else
+            {
+                lock (_LCIs)
+                {
+                    _LCIs.Add(citem);
+                }
+            }
+        }
+        /// <summary>
+        /// thread safe
+        /// 该方法线程安全。用于将子过程加入协程处理。
+        /// </summary>
+        /// <param name="func"></param>
+        public void SetCoroutineItem(Func<CoroutineItem, object,IEnumerator<CoroutineControl>> func,object args=null)
+        {
+            SetCoroutineItem(new CoroutineItem(this, func,args)); 
+        }
+        /// <summary>
+        /// 同步器
+        /// </summary>
+        private void CoroutineItemsSync()
+        {
+            //因private，内部调用为单线程，故没有lock _LCIs对象。
+            if (_LCIs2.Count == 0)
+            {
+                return;
+            }
+
+            lock (_LCIs2)
+            {
+                _LCIs.AddRange(_LCIs2);
+                _LCIs2.Clear();
+            }
+        }
+
+        /// <summary>
+        /// 清除器
+        /// </summary>
+        private void CoroutineItemsClear()
+        {
+            for (int i = 0; i < _LCIs.Count; i++)
+            {
+                if (_LCIs[i].Status == CoroutineStatus.end)
+                {
+                    _LCIs.Remove(_LCIs[i]);
+                    i--;
+                }
+            }
+            
+        }
+
+        public void SetKeep()
+        {
+            if (_runStatus == CoroutinesStatus.UnStart)
+                _runStatus = CoroutinesStatus.Keeping;
+        }
+
+        public void Abort()
+        {
+            if(_runStatus== CoroutinesStatus.Keeping || _runStatus== CoroutinesStatus.Runing)
+                _runStatus = CoroutinesStatus.Aborting;
+        } 
+        
+        public void Start()
+        {
+            //入口互斥，防止并发start。一旦一个start开始了，余下均不起作用。
+            //这里单独使用了isruning，没有使用status的状态。为了单独计算
+            lock (mutexObj)
+            {
+                if (IsRuning)
+                {
+                    return;
+                }
+                else
+                {
+                    _isRuning = true;
+                    if (_runStatus == CoroutinesStatus.UnStart)
+                    {
+                        _runStatus = CoroutinesStatus.Runing;
+                    }
+                }
+            } 
+
+
+            //bool TaskOver = true;
+             
+            while (true)
+            {
+                if (_LCIs.Count == 0)
+                {
+                    if (_runStatus != CoroutinesStatus.Keeping )
+                    {
+                        _isRuning = false;
+
+                        _runStatus = CoroutinesStatus.UnStart;
+                        break;
+                    }
+                    System.Threading.Thread.Sleep(1); //防止cpu资源耗费太多，提高性能可设置为0
+                }
+                
+                 
+                foreach (var v in _LCIs)
+                { 
+
+                    var v2 = v.start();
+                    while (v2.MoveNext())
+                    {
+                        if(_runStatus== CoroutinesStatus.Aborting)
+                        {
+                            break;
+                        }
+                        if (v2.Current == CoroutineControl.sched)
+                        {
+                            break;
+                        }
+                        if (v2.Current == CoroutineControl.end)
+                        {
+                            break;
+                        }
+                    }
+                    if (_runStatus == CoroutinesStatus.Aborting)
+                    {
+                        break;
+                    }
+
+                }
+                if (_runStatus == CoroutinesStatus.Aborting)
+                {
+                    _runStatus = CoroutinesStatus.Aborted;
+                    _isRuning = false;
+                    break;
+                }
+                CoroutineItemsClear();
+                CoroutineItemsSync(); 
+            }
+        }
+         
+    }
+}
