@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9IjYXsad5OjmND5DFUy1fim1upkNlMW0fQuvN29Cx1VkocMwtkYGxlYDznx7lpzyf0tW1gJEHy1jJD8sg7WAmQ==",
+  "dgSpecHash": "d+USHaMbqYAk/4ULVLSCEU+m0Wb48bYwpiG+fjsTZdEqiug0uPMUF/PnjY/ZqxyLsQ3uCFdBR6DFDDY5iewVUQ==",
   "success": true,
   "projectFilePath": "E:\\Work\\CodeLabs\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine\\Mm.Tools.Coroutine.csproj",
   "expectedPackageFiles": [
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Denebola\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []

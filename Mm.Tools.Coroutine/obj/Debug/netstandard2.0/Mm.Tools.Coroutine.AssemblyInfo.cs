@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mm.Tools.Coroutine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.1.3.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.1.3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mm.Tools.Coroutine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mm.Tools.Coroutine")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.1.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.1.3.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

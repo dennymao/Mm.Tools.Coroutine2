@@ -1,10 +1,11 @@
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\bin\Release\netstandard2.0\Mm.Tools.Coroutine.deps.json
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\bin\Release\netstandard2.0\Mm.Tools.Coroutine.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\bin\Release\netstandard2.0\Mm.Tools.Coroutine.pdb
+E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.csproj.AssemblyReference.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.GeneratedMSBuildEditorConfig.editorconfig
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.AssemblyInfoInputs.cache
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.AssemblyInfo.cs
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.csproj.CoreCompileInputs.cache
+E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.sourcelink.json
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.dll
 E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.pdb
-E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.csproj.AssemblyReference.cache
-E:\Work\CodeLabs\Mm.Tools.Coroutine\Mm.Tools.Coroutine\obj\Release\netstandard2.0\Mm.Tools.Coroutine.GeneratedMSBuildEditorConfig.editorconfig

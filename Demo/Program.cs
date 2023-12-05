@@ -18,8 +18,7 @@ namespace Demo
             Console.Title = "t1:" + System.Threading.Thread.CurrentThread.ManagedThreadId;
             cpool.SetCoroutineItem(p.MyTask);
             cpool.SetCoroutineItem(p.MyTask2);
-             //cpool.Start();
-             cpool.BackgroundStart
+             //cpool.Start(); 
             System.Threading.Tasks.Task.Factory.StartNew(cpool.Start);
 
             System.Threading.Thread.Sleep(1000);
@@ -38,7 +37,7 @@ namespace Demo
 
         public IEnumerator<CoroutineControl> MyTask(CoroutineItem ci,object arg)
         {
-
+            
 
             for (int i = 1; i < int.MaxValue; i++)
             {
@@ -51,7 +50,7 @@ namespace Demo
                 }
             }
 
-            yield break;
+            yield return CoroutineControl.end;
 
         }
         public IEnumerator<CoroutineControl> MyTask2(CoroutineItem ci,object arg)

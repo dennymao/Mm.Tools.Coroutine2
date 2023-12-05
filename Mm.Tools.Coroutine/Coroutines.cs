@@ -37,7 +37,10 @@ namespace Mm.Tools.Coroutine
         private object mutexObj = new object();
         //处理完当前内存队列退出，不处理二级队列。
         public CancellationToken cancellationToken = new CancellationToken();
-        public Action<Exception> ExceptionOperator;
+        /// <summary>
+        /// 默认错误异常则抛出，并导致协程池break。如果需要隐藏错误并不阻止请自行设定为null
+        /// </summary>
+        public Action<Exception> ExceptionOperator = (ex)=>throw ex;
         /// <summary>
         /// 错误重试数，如果不重新启动子进程，设为0
         /// 错误重试将重新开始子委托，而不是从错误处继续
@@ -133,6 +136,8 @@ namespace Mm.Tools.Coroutine
             SetCoroutineItem(citem);
             return v;
         }
+
+        
         //private IEnumerator<CoroutineControl> defInvork(CoroutineItem ci,object args)
         //{
         //   // ciaCallParmas<T1, T> arg = args as ciaCallParmas<T1, T>;

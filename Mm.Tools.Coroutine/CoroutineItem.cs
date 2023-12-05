@@ -22,6 +22,7 @@ namespace Mm.Tools.Coroutine
         [Obsolete]
         public int RestartInterval = 1000;//同上
 
+        
         public Action<Exception> ExceptionOperator;
         public Action AsyncCallBackAction; 
         public object result = null; //协程结果返回，此处主要用于Async await
@@ -113,27 +114,48 @@ namespace Mm.Tools.Coroutine
                     {
 
                         mnextb = _actBuf.MoveNext();
+
+                        ///Yu Fixd 2023.12.5 Support yeild break;
+                        if (!mnextb)
+                        {
+                            result = CoroutineControl.end;
+                            _Status = CoroutineStatus.end;
+                            break;
+                        } 
+                        
+
                         if (_actBuf.Current == CoroutineControl.sched)
                         {
 
                             result = CoroutineControl.sched;
                             break;
                         }
+                        //fix 2023.11.15 居然没处理end
+                        if (_actBuf.Current == CoroutineControl.end)
+                        {
+
+                            result = CoroutineControl.end;
+                            _Status = CoroutineStatus.end;
+                            break;
+                        }
                     }
 
                     
-                    if (!mnextb) _Status = CoroutineStatus.end;
+                    
                 }
                 catch (Exception ex)
                 {
-                    //错误处理委托
-                    if (ExceptionOperator != null)
-                    {
-                        ExceptionOperator(ex);
-                    }
+                    
                     //错误重试次数到达
                     if (RestartCount < 1)
                     {
+                        //错误处理委托 fix 2023.11.8
+                        //如果有错误重试机制，又设置了错误委托，则等待重试超过次数再触发，修正。
+                        if (ExceptionOperator != null)
+                        {
+                            ExceptionOperator(ex);
+                        }
+
                         _Status = CoroutineStatus.end;
                         result = CoroutineControl.end; 
                     }
